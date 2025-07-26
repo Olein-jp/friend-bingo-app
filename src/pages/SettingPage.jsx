@@ -71,7 +71,7 @@ export default function SettingPage() {
   return (
     <div className="page-container">
       <div className="setting-container">
-        <h1 className="setting-title">ビンゴ生成設定</h1>
+        <h1 className="setting-title">ボルダリングスペース フレンド<br />課題ビンゴ生成設定</h1>
 
         <div className="checkbox-group">
           {["A", "B", "C"].map((key) => (
