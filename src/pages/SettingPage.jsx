@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import bingoData from "../data/bingoData.json";
 import "./SettingPage.css";
 
 export default function SettingPage() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "課題ビンゴ生成設定 - ボルダリングスペース フレンド";
+  }, []);
 
   // 利用するリストのデフォルト設定
   const defaultLists = {
@@ -85,11 +88,6 @@ export default function SettingPage() {
 
   return (
     <div className="page-container">
-      <Helmet>
-        <title>課題ビンゴ生成設定 - ボルダリングスペース フレンド</title>
-        <meta name="description" content="課題ビンゴの生成設定を行うページです。" />
-      </Helmet>
-
       <div className="setting-container">
         <h1 className="setting-title">
           ボルダリングスペース フレンド<br />課題ビンゴ生成設定

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import "./BingoPage.css"; // 同一デザイン用CSS
@@ -8,6 +7,10 @@ import "./BingoPage.css"; // 同一デザイン用CSS
 export default function BingoPage() {
   const [bingoItems, setBingoItems] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "課題ビンゴ表 - ボルダリングスペース フレンド";
+  }, []);
 
   useEffect(() => {
     const data = localStorage.getItem("bingoItems");
@@ -62,11 +65,6 @@ export default function BingoPage() {
 
   return (
     <div className="page-container">
-      <Helmet>
-        <title>課題ビンゴ表 - ボルダリングスペース フレンド 専用</title>
-        <meta name="description" content="生成した課題ビンゴ表を表示するページです。" />
-      </Helmet>
-
       <div className="bingo-print-area">
         <h1 className="bingo-title">ボルダリングスペース フレンド 課題ビンゴ表</h1>
         <div id="bingo-board" className="bingo-board">
