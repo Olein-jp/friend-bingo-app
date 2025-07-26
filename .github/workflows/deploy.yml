@@ -3,17 +3,17 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # mainブランチにpushしたら実行
+      - main  # mainブランチにpush時に実行
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
