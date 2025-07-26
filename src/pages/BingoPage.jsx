@@ -68,7 +68,7 @@ export default function BingoPage() {
       <div className="bingo-print-area">
         <h1 className="bingo-title">
           <figure className="page-logo">
-          <img src="/logo.png" alt="ボルダリングスペース フレンド ロゴ" />
+          <img src="logo.png" alt="ボルダリングスペース フレンド ロゴ" />
         </figure>
           課題ビンゴ表</h1>
         <div id="bingo-board" className="bingo-board">

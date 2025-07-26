@@ -91,7 +91,7 @@ export default function SettingPage() {
       <div className="setting-container">
         <h1 className="setting-title">
           <figure className="page-logo">
-          <img src="/logo.png" alt="ボルダリングスペース フレンド ロゴ" />
+          <img src="logo.png" alt="ボルダリングスペース フレンド ロゴ" />
         </figure>
           課題ビンゴ生成設定
         </h1>
