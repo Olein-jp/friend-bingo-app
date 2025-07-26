@@ -7,13 +7,15 @@ export default function SettingPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = "課題ビンゴ生成設定 - ボルダリングスペース フレンド";
+    document.title = "課題ビンゴ作成 - ボルダリングスペース フレンド";
   }, []);
 
   // 利用するリストのデフォルト設定
   const defaultLists = {
-    "キッズ課題": true,
-    "青テープ": false,
+    "キッズ課題 - 赤": true,
+    "キッズ課題 - 青": true,
+    "キッズ課題 - 黄": false,
+    "青テープ": true,
     "ピンクテープ": false,
     "黄テープ": false,
     "水色テープ": false
@@ -63,7 +65,9 @@ export default function SettingPage() {
   // ビンゴ表を生成
   const generateBingo = () => {
     let pool = [];
-    if (selectedLists["キッズ課題"]) pool = [...pool, ...bingoData["キッズ課題"]];
+    if (selectedLists["キッズ課題 - 赤"]) pool = [...pool, ...bingoData["キッズ課題 - 赤"]];
+    if (selectedLists["キッズ課題 - 青"]) pool = [...pool, ...bingoData["キッズ課題 - 青"]];
+    if (selectedLists["キッズ課題 - 黄"]) pool = [...pool, ...bingoData["キッズ課題 - 黄"]];
     if (selectedLists["青テープ"]) pool = [...pool, ...bingoData["青テープ"]];
     if (selectedLists["ピンクテープ"]) pool = [...pool, ...bingoData["ピンクテープ"]];
     if (selectedLists["黄テープ"]) pool = [...pool, ...bingoData["黄テープ"]];
@@ -93,7 +97,7 @@ export default function SettingPage() {
           <figure className="page-logo">
           <img src="logo.png" alt="ボルダリングスペース フレンド ロゴ" />
         </figure>
-          課題ビンゴ生成設定
+          課題ビンゴ作成
         </h1>
 
         {/* リスト選択 */}
