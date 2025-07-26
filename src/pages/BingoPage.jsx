@@ -66,7 +66,11 @@ export default function BingoPage() {
   return (
     <div className="page-container">
       <div className="bingo-print-area">
-        <h1 className="bingo-title">ボルダリングスペース フレンド 課題ビンゴ表</h1>
+        <h1 className="bingo-title">
+          <figure className="page-logo">
+          <img src="/logo.png" alt="ボルダリングスペース フレンド ロゴ" />
+        </figure>
+          課題ビンゴ表</h1>
         <div id="bingo-board" className="bingo-board">
           {bingoItems.map((item, i) => (
             <div

@@ -22,7 +22,20 @@
 .setting-title {
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 16px;
+  margin-bottom: 30px;
+}
+
+.page-logo {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.page-logo img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 /* チェックボックスグループ */
@@ -32,6 +45,7 @@
 
 .checkbox-label {
   margin-right: 8px;
+  font-size: 20px;
 }
 
 /* ボタンエリア */

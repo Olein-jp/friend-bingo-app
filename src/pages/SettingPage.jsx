@@ -90,7 +90,10 @@ export default function SettingPage() {
     <div className="page-container">
       <div className="setting-container">
         <h1 className="setting-title">
-          ボルダリングスペース フレンド<br />課題ビンゴ生成設定
+          <figure className="page-logo">
+          <img src="/logo.png" alt="ボルダリングスペース フレンド ロゴ" />
+        </figure>
+          課題ビンゴ生成設定
         </h1>
 
         {/* リスト選択 */}

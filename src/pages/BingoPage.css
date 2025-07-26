@@ -16,6 +16,9 @@
   font-weight: bold;
   margin-bottom: 16px;
 }
+.bingo-title figure img {
+  width: 300px;
+}
 
 /* ビンゴ表 */
 .bingo-board {
