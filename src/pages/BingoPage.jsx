@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import "./BingoPage.css"; // 同一デザイン用CSS
@@ -20,10 +20,16 @@ export default function BingoPage() {
 
   /** A4横向きにビンゴ表を最大化してPDF化 */
   const downloadPDF = async () => {
-    const element = document.querySelector(".bingo-print-area"); // 表示部分全体をキャプチャ
+    const element = document.querySelector(".bingo-print-area");
+    
+    // 1. フォントの読み込み完了を待つ
+    await document.fonts.ready;
+
+    // 2. html2canvasでキャプチャ
     const canvas = await html2canvas(element, { scale: 3 });
     const imgData = canvas.toDataURL("image/png");
 
+    // 3. PDF生成
     const pdf = new jsPDF({
       orientation: "landscape",
       unit: "mm",

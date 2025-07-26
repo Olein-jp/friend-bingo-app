@@ -1,3 +1,7 @@
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
 /* ビンゴ表のラッパー */
 #bingo-board {
   display: grid;
