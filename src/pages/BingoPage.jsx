@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import "./BingoPage.css"; // 同一デザイン用CSS
@@ -20,7 +21,6 @@ export default function BingoPage() {
   /** A4横向きにビンゴ表を最大化してPDF化 */
   const downloadPDF = async () => {
     const element = document.querySelector(".bingo-print-area"); // 表示部分全体をキャプチャ
-
     const canvas = await html2canvas(element, { scale: 3 });
     const imgData = canvas.toDataURL("image/png");
 
@@ -33,11 +33,9 @@ export default function BingoPage() {
     const pageWidth = pdf.internal.pageSize.getWidth(); // 297mm
     const pageHeight = pdf.internal.pageSize.getHeight(); // 210mm
 
-    // 画像サイズをA4横向きに合わせて調整
     let imgWidth = pageWidth - 20; // 左右10mmの余白
     let imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-    // 高さが溢れる場合は幅を調整
     if (imgHeight > pageHeight - 20) {
       imgHeight = pageHeight - 20;
       imgWidth = (canvas.width * imgHeight) / canvas.height;
@@ -58,6 +56,11 @@ export default function BingoPage() {
 
   return (
     <div className="page-container">
+      <Helmet>
+        <title>課題ビンゴ表 - ボルダリングスペース フレンド 専用</title>
+        <meta name="description" content="生成した課題ビンゴ表を表示するページです。" />
+      </Helmet>
+
       <div className="bingo-print-area">
         <h1 className="bingo-title">ボルダリングスペース フレンド 課題ビンゴ表</h1>
         <div id="bingo-board" className="bingo-board">
@@ -69,6 +72,7 @@ export default function BingoPage() {
                 backgroundColor: item.bgColor,
                 color: item.fontColor,
               }}
+              title={item.text}
             >
               <span>{item.text}</span>
             </div>

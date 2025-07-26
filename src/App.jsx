@@ -1,16 +1,17 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SettingPage from "./pages/SettingPage";
 import BingoPage from "./pages/BingoPage";
 
-function App() {
+export default function App() {
+  const basename =
+    import.meta.env.MODE === "production" ? "/friend-bingo-app" : "/";
+
   return (
-    <Router basename="/friend-bingo-app">
+    <BrowserRouter basename={basename}>
       <Routes>
         <Route path="/" element={<SettingPage />} />
         <Route path="/bingo" element={<BingoPage />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
-
-export default App;

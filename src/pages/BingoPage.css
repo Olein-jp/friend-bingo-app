@@ -41,9 +41,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  white-space: nowrap;
+  white-space: normal;   /* 改行を許可 */
+  text-align: center;    /* セル内で中央揃え */
   font-weight: bold;
   font-size: clamp(10px, 3vw, 18px);
+  /* word-break: break-word; 長い単語を改行 */
 }
 
 /* ボタンエリア */
