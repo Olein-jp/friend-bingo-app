@@ -1,0 +1,30 @@
+/* ビンゴ表のラッパー */
+#bingo-board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5列固定 */
+  grid-gap: 5px; /* セル間の余白 */
+  max-width: 400px; /* 表全体の幅 */
+  margin: 0 auto; /* 中央寄せ */
+}
+
+/* ビンゴ表のセル */
+.bingo-cell {
+  width: 100%;
+  padding-top: 100%; /* 正方形を作るトリック（幅に対して高さを100%） */
+  position: relative;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* セル内のテキストを中央に配置 */
+.bingo-cell span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

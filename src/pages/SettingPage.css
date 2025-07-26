@@ -1,0 +1,65 @@
+/* ページ全体の中央寄せ */
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+}
+
+/* コンテナ */
+.setting-container {
+  padding: 16px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* タイトル */
+.setting-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+/* チェックボックスグループ */
+.checkbox-group {
+  margin-bottom: 16px;
+}
+
+.checkbox-label {
+  margin-right: 8px;
+}
+
+/* ボタンエリア */
+.button-area {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* ボタン */
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-blue {
+  background-color: #1976d2;
+  color: white;
+}
+
+.btn-gray {
+  background-color: #666;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}

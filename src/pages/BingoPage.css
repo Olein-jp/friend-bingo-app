@@ -1,0 +1,136 @@
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  flex-direction: column;
+  padding: 10px;
+  text-align: center;
+}
+
+/* タイトル */
+.bingo-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+/* ビンゴ表 */
+.bingo-board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+  width: 90vw;
+  margin: 0 auto;
+}
+
+/* セル */
+.bingo-cell {
+  position: relative;
+  width: 100%;
+  padding-top: 100%; /* 正方形 */
+  border: 2px solid #333;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.bingo-cell span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  font-weight: bold;
+  font-size: clamp(10px, 3vw, 18px);
+}
+
+/* ボタンエリア */
+.button-area {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-green {
+  background-color: #4caf50;
+  color: white;
+}
+
+.btn-gray {
+  background-color: #666;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* ====== 印刷用設定 ====== */
+@media print {
+  @page {
+    size: A4 landscape; /* A4横向き */
+    margin: 5mm;        /* 最小限の余白 */
+  }
+
+  body {
+    background: white;
+    -webkit-print-color-adjust: exact;
+    margin: 0;
+    padding: 0;
+  }
+
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: white;
+  }
+
+  .bingo-title {
+    font-size: 20pt;
+    margin-bottom: 10mm;
+  }
+
+  .bingo-board {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2mm;
+    width: calc(100% - 10mm); /* 両端余白を除外して最大幅 */
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .bingo-cell {
+    aspect-ratio: 1/1; /* 正方形 */
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18pt;
+  }
+
+  .bingo-cell span {
+    font-size: 18pt;
+  }
+
+  .button-area {
+    display: none; /* 印刷時に非表示 */
+  }
+}
