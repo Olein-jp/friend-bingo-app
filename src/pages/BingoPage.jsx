@@ -2,17 +2,22 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-import "./BingoPage.css"; // 同一デザイン用CSS
+import "./BingoPage.css"; // 共通スタイル
 
 export default function BingoPage() {
   const [bingoItems, setBingoItems] = useState([]);
+  const [gridSize, setGridSize] = useState(5);
   const navigate = useNavigate();
 
+  // ページタイトル設定＆localStorageからデータ・サイズを復元
   useEffect(() => {
     document.title = "課題ビンゴ表 - ボルダリングスペース フレンド";
-  }, []);
 
-  useEffect(() => {
+    const savedSize = localStorage.getItem("bingoSize");
+    if (savedSize) {
+      setGridSize(JSON.parse(savedSize));
+    }
+
     const data = localStorage.getItem("bingoItems");
     if (!data) {
       navigate("/");
@@ -21,35 +26,23 @@ export default function BingoPage() {
     }
   }, [navigate]);
 
-  /** A4横向きにビンゴ表を最大化してPDF化 */
+  // PDFダウンロード
   const downloadPDF = async () => {
     const element = document.querySelector(".bingo-print-area");
-    
-    // 1. フォントの読み込み完了を待つ
     await document.fonts.ready;
-
-    // 2. html2canvasでキャプチャ
     const canvas = await html2canvas(element, { scale: 3 });
     const imgData = canvas.toDataURL("image/png");
+    const pdf = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
 
-    // 3. PDF生成
-    const pdf = new jsPDF({
-      orientation: "landscape",
-      unit: "mm",
-      format: "a4",
-    });
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
 
-    const pageWidth = pdf.internal.pageSize.getWidth(); // 297mm
-    const pageHeight = pdf.internal.pageSize.getHeight(); // 210mm
-
-    let imgWidth = pageWidth - 20; // 左右10mmの余白
+    let imgWidth = pageWidth - 20;
     let imgHeight = (canvas.height * imgWidth) / canvas.width;
-
     if (imgHeight > pageHeight - 20) {
       imgHeight = pageHeight - 20;
       imgWidth = (canvas.width * imgHeight) / canvas.height;
     }
-
     const posX = (pageWidth - imgWidth) / 2;
     const posY = (pageHeight - imgHeight) / 2;
 
@@ -65,13 +58,26 @@ export default function BingoPage() {
 
   return (
     <div className="page-container">
-      <div className="bingo-print-area">
+      {/* 動的に 3x3 or 5x5 のクラスを付与 */}
+      <div className={`bingo-print-area size-${gridSize}x${gridSize}`}>
         <h1 className="bingo-title">
           <figure className="page-logo">
-          <img src="logo.png" alt="ボルダリングスペース フレンド ロゴ" />
-        </figure>
-          課題ビンゴ表</h1>
-        <div id="bingo-board" className="bingo-board">
+            <img
+              src={`${import.meta.env.BASE_URL}logo.png`}
+              alt="ボルダリングスペース フレンド ロゴ"
+            />
+          </figure>
+          課題ビンゴ表（{gridSize}×{gridSize}）
+        </h1>
+
+        <div
+          id="bingo-board"
+          className="bingo-board"
+          style={{
+            gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
+            gridTemplateRows:    `repeat(${gridSize}, 1fr)`,
+          }}
+        >
           {bingoItems.map((item, i) => (
             <div
               key={i}
@@ -87,6 +93,7 @@ export default function BingoPage() {
           ))}
         </div>
       </div>
+
       <div className="button-area">
         <button onClick={downloadPDF} className="btn btn-green">
           PDFダウンロード

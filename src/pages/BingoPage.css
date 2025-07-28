@@ -139,3 +139,10 @@
     display: none; /* 印刷時に非表示 */
   }
 }
+
+/**
+  * 3x3 のビンゴ表用のスタイル
+  */
+.size-3x3 .bingo-cell span {
+  font-size: clamp(14px, 4vw, 24px);
+}
