@@ -82,10 +82,12 @@ export default function SettingPage() {
       pool = [...pool, ...bingoData["キッズ課題 - 青"]];
     if (selectedLists["キッズ課題 - 黄"])
       pool = [...pool, ...bingoData["キッズ課題 - 黄"]];
-    if (selectedLists["青テープ"]) pool = [...pool, ...bingoData["青テープ"]];
+    if (selectedLists["青テープ"])
+      pool = [...pool, ...bingoData["青テープ"]];
     if (selectedLists["ピンクテープ"])
       pool = [...pool, ...bingoData["ピンクテープ"]];
-    if (selectedLists["黄テープ"]) pool = [...pool, ...bingoData["黄テープ"]];
+    if (selectedLists["黄テープ"])
+      pool = [...pool, ...bingoData["黄テープ"]];
     if (selectedLists["水色テープ"])
       pool = [...pool, ...bingoData["水色テープ"]];
 
